@@ -1,5 +1,6 @@
 import './styles.css';
 import PropTypes from 'prop-types';
+import { AiFillCloseCircle } from 'react-icons/ai'
 
 Colaborador.propTypes = {
   nome: PropTypes.string.isRequired,
@@ -7,9 +8,10 @@ Colaborador.propTypes = {
   imagem: PropTypes.string.isRequired,
 };
 
-export default function Colaborador({ nome, cargo, imagem }) {
+export default function Colaborador({ nome, cargo, imagem, aoDeletar }) {
   return(
     <div className='colaborador'>
+      <AiFillCloseCircle size={25} className='deletar' onClick={aoDeletar} />
       <div className='cabecalho'>
         <img src={imagem} alt={nome} />
       </div>

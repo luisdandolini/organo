@@ -9,13 +9,29 @@ Time.propTypes = {
   colaboradores: PropTypes.array
 };
 
-export default function Time({ nome, corPrimaria, corSecundaria, colaboradores }) {
+export default function Time({ nome, corPrimaria, corSecundaria, colaboradores, aoDeletar, mudarCor }) {
   return(
     <section className='time' style={{backgroundColor: corSecundaria}}>
+      <input 
+        type="color" 
+        className='input-cor'
+        value={corSecundaria} 
+        onChange={e => mudarCor(e.target.value, nome)}
+      />
       <h3 style={{borderBottom: `4px solid ${corPrimaria}`}}>{nome}</h3>
       <div className='colaboradores'>
         {
-          colaboradores.map(colaborador => <Colaborador key={colaborador} nome={colaborador.nome} cargo={colaborador.cargo} imagem={colaborador.imagem} />)
+          colaboradores.map(colaborador => {
+            return(
+              <Colaborador 
+                key={colaborador} 
+                nome={colaborador.nome} 
+                cargo={colaborador.cargo} 
+                imagem={colaborador.imagem} 
+                aoDeletar={() => {aoDeletar}}
+              />
+            )
+          })
         }
       </div>
     </section>
